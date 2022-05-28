@@ -42,7 +42,12 @@ class WindowCapture:
         img = self.get_screenshot()
         img_cv = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         cv2.imshow("demo", img_cv)
-        cv2.waitKey(2)
+        cv2.waitKey(1)
+
+    def save_screenshot(self, path = "screenshot.png"):
+        img = self.get_screenshot()
+        img_cv = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        cv2.imwrite(path, img_cv)
 
     def get_rect_borderless(self, box):
         # generate a new rect without borders and black bars
