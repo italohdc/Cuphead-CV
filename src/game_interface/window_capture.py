@@ -12,7 +12,7 @@ class WindowCapture:
         # find the handle for the window we want to capture
         self.window = win32gui.FindWindow(None, window_name)
         if not self.window:
-            raise Exception("Window not found")
+            raise Exception("Window not found. The game must be launched.")
 
         # raise window to the front (if possible)
         try:
@@ -42,7 +42,7 @@ class WindowCapture:
         img = self.get_screenshot()
         img_cv = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         cv2.imshow("demo", img_cv)
-        cv2.waitKey(100)
+        cv2.waitKey(2)
 
     def get_rect_borderless(self, box):
         # generate a new rect without borders and black bars
