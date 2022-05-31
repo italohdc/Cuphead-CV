@@ -1,3 +1,9 @@
+# CV Dataset
+dataset/
+
+# YOLOv5 repository
+yolov5/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -42,6 +42,9 @@ class WindowCapture:
             print("Failed to set window to foreground")
 
     def get_screenshot(self) -> cv2.Mat:
+        # update window dimensions and location
+        self.update_window_dimensions()
+
         # get the window image data
         wDC = win32gui.GetWindowDC(self.screen)
         dcObj = win32ui.CreateDCFromHandle(wDC)
@@ -73,15 +76,18 @@ class WindowCapture:
         # see the discussion here:
         # https://github.com/opencv/opencv/issues/14866#issuecomment-580207109
         img = np.ascontiguousarray(img)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         return img
 
     def show_screenshot(self, wait: int = 1, window_name: str = "Screenshot"):
         img = self.get_screenshot()
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         cv2.imshow(window_name, img)
         cv2.waitKey(wait)
 
     def save_screenshot(self, path = "screenshot.png"):
         img = self.get_screenshot()
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         cv2.imwrite(path, img)
 
     def get_rect_borderless(self, box):
